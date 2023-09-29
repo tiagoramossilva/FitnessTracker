@@ -11,7 +11,7 @@ public class Battle {
             
             // Loop para as três batalhas
             for (int batalha = 1; batalha <= 3; batalha++) {
-                System.out.println("Batalha " + batalha);
+                System.out.println("Batalha: " + batalha);
                 
                 // VELOCIDADE aleatória das criaturas
                 int velocidadeCriatura1 = random.nextInt(10) + 1;

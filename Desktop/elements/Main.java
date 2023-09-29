@@ -33,14 +33,12 @@ public class Main{
                         System.out.print("Criatura selecionada: " + breezehacker);
                         break;
                         default:
-                        System.out.print("Codigo inválido! Por favor, selecione um codigo válido.");
+                        System.out.print("Codigo inválido! Por favor, digite um codigo válido.");
                     }
 
-
-                    // do{
-                    //     System.out.print("Iniciar um torneio [1] ou sair do programa [2]\n>> ");
-                        
-                    // } while(option != 2);
+                    do{
+                        System.out.print("Iniciar um torneio [1] ou sair do programa [2]\n>> ");
+                    } while(option != 2);
 
                 } while(option != 2);
 

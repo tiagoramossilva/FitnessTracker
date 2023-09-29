@@ -1,21 +1,9 @@
 public class WaveNerd extends Creatures {
-    public WaveNerd(){
-        getPoder();
-        getAtaque();
-        getDefesa();
-        getVelocidade();
-        getPontosDeVida();
-    }
     
     @Override
     public String toString() {
-        return String.format("%s %n %s: %d %n %s: %d %n %s: %d %n %s: %d %n %s: %d %n",
-         "*****WaveNerd*****",
-                "Poder", getPoder(), 
-                "Ataque", getAtaque(),
-                "Defesa", getDefesa(), 
-                "Velocidade", getVelocidade(),
-                "Pontos de Vida", getPontosDeVida());
+        return String.format("%n *****WaveNerd***** %n Poder: %d %n Ataque: %d %n Defesa: %d %n Velocidade: %d %n Pontos de vida: %d %n", 
+        getPoder(), getAtaque(), getDefesa(), getVelocidade(), getPontosDeVida());
     }
     
 }
