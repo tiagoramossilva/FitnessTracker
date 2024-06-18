@@ -1,20 +1,24 @@
-import React from 'react';
+import React from "react";
 import WorkoutCard from '../components/WorkoutCard';
 
-const MyPlanPage = ({ myPlan, removeFromPlan }) => {
+const MyPlan = ({ myPlan, removeFromPlan }) => {
+  const activeWorkouts = myPlan.filter(workout => !workout.completed);
+
   return (
-    <div>
+    <div className="my-plan-page">
       <h1>Meu Plano</h1>
-      {myPlan.map((workout) => (
-        <WorkoutCard
-          key={workout.id}
-          workout={workout}
-          onRemove={removeFromPlan}
-          showAddButton={false}
-        />
-      ))}
+      <div className="workout-list">
+        {activeWorkouts.map((workout) => (
+          <WorkoutCard
+            key={workout.id}
+            workout={workout}
+            removeFromPlan={removeFromPlan}
+            showRemoveButton
+          />
+        ))}
+      </div>
     </div>
   );
 };
 
-export default MyPlanPage;
+export default MyPlan;
