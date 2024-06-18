@@ -8,14 +8,14 @@
 }
 
 .workout-card.completed {
-  background-color: #dff0d8; /* Verde claro para treinos concluídos */
+  background-color: #dff0d8;
 }
 
 .workout-card h3 {
   margin-top: 0;
 }
 
-.workout-card button,
+.workout-card .button,
 .workout-card .details-button {
   display: block;
   font-size: 13px;
@@ -31,7 +31,7 @@
   text-decoration: none;
 }
 
-.workout-card button:hover,
+.workout-card .button:hover,
 .workout-card .details-button:hover {
   background-color: #0056b3;
 }

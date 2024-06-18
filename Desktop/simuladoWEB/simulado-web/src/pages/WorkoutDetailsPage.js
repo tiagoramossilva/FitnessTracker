@@ -7,25 +7,25 @@ const WorkoutDetailsPage = ({ workouts, myPlan, completeWorkout }) => {
   const navigate = useNavigate();
 
   if (!workout) {
-    return <p>Treino não encontrado</p>;
+    return <div>Treino não encontrado!</div>;
   }
 
-  const isInPlan = myPlan.some((w) => w.id === workout.id);
-
-  const handleCompleteWorkout = () => {
-    completeWorkout(workout.id);
-    alert("Treino concluído com sucesso!");
-    navigate("/my-plan");
+  const handleComplete = () => {
+    completeWorkout(workout.id, navigate);
   };
+
+  const isInPlan = myPlan.some((w) => w.id === workout.id);
 
   return (
     <div>
       <h2>{workout.name}</h2>
       <p>{workout.description}</p>
       <p>Duração: {workout.duration} minutos</p>
-      {workout.completed && <p>Data de Conclusão: {workout.completedDate}</p>}
+      {workout.completed && <p>Concluído em: {workout.completedDate}</p>}
       {isInPlan && !workout.completed && (
-        <button onClick={handleCompleteWorkout}>Concluir Treino</button>
+        <button className="button" onClick={handleComplete}>
+          Concluir Treino
+        </button>
       )}
     </div>
   );

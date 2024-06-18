@@ -5,7 +5,6 @@ import HomePage from "./pages/HomePage";
 import MyPlanPage from "./pages/MyPlanPage.js";
 import WorkoutDetailsPage from "./pages/WorkoutDetailsPage";
 import HistoryPage from "./pages/HistoryPage";
-
 import "./App.css";
 
 const App = () => {
@@ -192,13 +191,18 @@ const App = () => {
     setMyPlan(myPlan.filter((w) => w.id !== workout.id));
   };
 
-  const completeWorkout = (id) => {
+  const completeWorkout = (id, navigate) => {
     setWorkouts(workouts.map((workout) =>
       workout.id === id ? { ...workout, completed: true, completedDate: new Date().toLocaleDateString() } : workout
     ));
     setMyPlan(myPlan.map((workout) =>
       workout.id === id ? { ...workout, completed: true, completedDate: new Date().toLocaleDateString() } : workout
     ));
+    setConfirmationMessage(`Treino concluído com sucesso!`);
+    setTimeout(() => {
+      setConfirmationMessage("");
+      navigate("/my-plan");
+    }, 3000);
   };
 
   return (

@@ -1,6 +1,5 @@
 import React from "react";
 import WorkoutCard from "../components/WorkoutCard";
-import "./MyPlan.css";
 
 const MyPlanPage = ({ myPlan, removeFromPlan }) => {
   return (

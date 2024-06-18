@@ -1,16 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./WorkoutCard.css"; // Certifique-se de importar o CSS
+import './WorkoutCard.css';
 
-const WorkoutCard = ({ workout, onAddToPlan, onRemove, isCompleted }) => {
+const WorkoutCard = ({ workout, addToPlan, removeFromPlan, showRemoveButton }) => {
   return (
-    <div className={`workout-card ${isCompleted ? 'completed' : ''}`}>
+    <div className={`workout-card ${workout.completed ? 'completed' : ''}`}>
       <h3>{workout.name}</h3>
       <p>{workout.description}</p>
       <p>Duração: {workout.duration} minutos</p>
-      {onAddToPlan && <button onClick={onAddToPlan}>Adicionar ao Meu Plano</button>}
-      {onRemove && <button onClick={onRemove}>Remover</button>}
-      <Link to={`/workout/${workout.id}`} className="details-button">Ver Detalhes do Treino</Link>
+      <Link to={`/workout/${workout.id}`} className="details-button">
+        Ver Detalhes
+      </Link>
+      {addToPlan && (
+        <button className="button" onClick={() => addToPlan(workout)}>
+          Adicionar ao Meu Plano
+        </button>
+      )}
+      {showRemoveButton && (
+        <button className="button" onClick={() => removeFromPlan(workout)}>
+          Remover
+        </button>
+      )}
     </div>
   );
 };
