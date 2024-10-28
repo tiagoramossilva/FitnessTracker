@@ -17,8 +17,8 @@ class Fornecedor {
   }
 
   static async create(fornecedorData) {
-    const docRef = doc(db, 'fornecedores'); // Corrigido para criar a referência do documento
-    await setDoc(docRef, { ...fornecedorData, id: docRef.id }); // Use setDoc para salvar os dados
+    const docRef = doc(collection(db, 'fornecedores')); // Gera automaticamente um ID único
+    await setDoc(docRef, { ...fornecedorData, id: docRef.id }); // Usa setDoc para salvar os dados
     return new Fornecedor(docRef.id, ...Object.values(fornecedorData)); // Retorna uma nova instância
   }
 

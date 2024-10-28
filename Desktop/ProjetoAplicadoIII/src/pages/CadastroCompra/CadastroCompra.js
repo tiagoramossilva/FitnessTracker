@@ -129,6 +129,11 @@ function CadastroCompra() {
             ...produtoInfo
           } = produto;
 
+          // Verifique se os campos obrigatórios estão preenchidos
+          if (!produtoInfo.nome || !produtoInfo.fabricante) {
+            throw new Error("Nome e Fabricante do produto são obrigatórios.");
+          }
+
           const produtoId = await Produto.create(produtoInfo);
           await Estoque.create({ tipo_unitario, quantidade, produtoId });
           await LocalArmazenamento.create({ andar, sala, armario, produtoId });
@@ -320,69 +325,62 @@ function CadastroCompra() {
         {/* Informações de produto e armazenamento */}
         {produtos.map((produto, index) => (
           <fieldset className="form-section" key={index}>
-            <legend>Informações do produto</legend>
+            <legend>Produto {index + 1}</legend>
             <div className="form-group">
               <label>Nome:</label>
               <input
                 type="text"
                 name="nome"
-                value={produto.nome}
                 onChange={(event) => handleChange(index, event)}
               />
               <label>Número de série:</label>
               <input
                 type="text"
                 name="numero_serie"
-                value={produto.numero_serie}
                 onChange={(event) => handleChange(index, event)}
               />
               <label>Fabricante:</label>
               <input
                 type="text"
                 name="fabricante"
-                value={produto.fabricante}
                 onChange={(event) => handleChange(index, event)}
               />
               <label>Descrição:</label>
               <input
                 type="text"
                 name="descricao"
-                value={produto.descricao}
                 onChange={(event) => handleChange(index, event)}
               />
+            </div>
+            <div className="form-group">
               <label>Tipo Unitário:</label>
               <input
                 type="text"
                 name="tipo_unitario"
-                value={produto.tipo_unitario}
                 onChange={(event) => handleChange(index, event)}
               />
               <label>Quantidade:</label>
               <input
                 type="number"
                 name="quantidade"
-                value={produto.quantidade}
                 onChange={(event) => handleChange(index, event)}
               />
               <label>Andar:</label>
               <input
                 type="text"
                 name="andar"
-                value={produto.andar}
                 onChange={(event) => handleChange(index, event)}
               />
               <label>Sala:</label>
               <input
                 type="text"
                 name="sala"
-                value={produto.sala}
                 onChange={(event) => handleChange(index, event)}
               />
               <label>Armário:</label>
               <input
                 type="text"
                 name="armario"
-                value={produto.armario}
                 onChange={(event) => handleChange(index, event)}
               />
             </div>
@@ -396,11 +394,11 @@ function CadastroCompra() {
           Remover Produto
         </button>
 
-        {/* Informações do projeto */}
+        {/* Informações do projeto e adicionais */}
         <fieldset className="form-section">
-          <legend>Informações do projeto</legend>
+          <legend>Informações do Projeto</legend>
           <div className="form-group">
-            <label>Nome do projeto:</label>
+            <label>Nome do Projeto:</label>
             <input
               type="text"
               name="projeto.nome_projeto"
@@ -412,7 +410,7 @@ function CadastroCompra() {
               name="projeto.responsavel_tecnico"
               onChange={handleFormChange}
             />
-            <label>Gerente do projeto:</label>
+            <label>Gerente do Projeto:</label>
             <input
               type="text"
               name="projeto.gerente_projeto"
@@ -427,9 +425,8 @@ function CadastroCompra() {
           </div>
         </fieldset>
 
-        {/* Informações adicionais */}
         <fieldset className="form-section">
-          <legend>Informações adicionais</legend>
+          <legend>Adicionais</legend>
           <div className="form-group">
             <label>Usuário:</label>
             <input
@@ -438,14 +435,15 @@ function CadastroCompra() {
               onChange={handleFormChange}
             />
             <label>Observações:</label>
-            <textarea
+            <input
+              type="text"
               name="adicionais.observacoes"
               onChange={handleFormChange}
             />
           </div>
         </fieldset>
 
-        <button type="submit">Cadastrar</button>
+        <button type="submit">Cadastrar Compra</button>
         <button type="button" onClick={handleCancel}>
           Cancelar
         </button>

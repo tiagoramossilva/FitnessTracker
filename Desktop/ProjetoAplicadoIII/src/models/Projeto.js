@@ -11,9 +11,9 @@ class Projeto {
   }
 
   static async create(projetoData) {
-    const docRef = doc(collection(db, 'projetos')); // Cria referência para um novo documento
-    await setDoc(docRef, { ...projetoData, id: docRef.id }); // Salva os dados do projeto
-    return { id: docRef.id, ...projetoData }; // Retorna os dados com o novo ID
+    const docRef = doc(collection(db, 'projetos')); 
+    await setDoc(docRef, { ...projetoData, id: docRef.id }); 
+    return { id: docRef.id, ...projetoData }; 
   }
 
   static async getById(id) {
